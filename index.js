@@ -21,7 +21,7 @@ var xdai_sc = [
     "0xf956d3f6324152af168b229a421D02c87824aE75"  // New Hires
 ]
 
-exports.handler = async (event) => {
+exports.handler = async () => {
     var mainnetProvider = new ethers.providers.JsonRpcProvider(urlMainetProvider);
     var xDAIProvider = new ethers.providers.JsonRpcProvider(urlxDAIProvider);
 
@@ -38,7 +38,7 @@ exports.handler = async (event) => {
     }
 
     for (var i = 0; i < xdai_sc.length; i++) {
-        circulating = circulating.sub(await token.balanceOf(xdai_sc[i]))
+        circulating = circulating.sub(await token_xdai.balanceOf(xdai_sc[i]))
     }
 
     let result = { totalSupply: totalSupply.toString(), circulating: circulating.toString() }
