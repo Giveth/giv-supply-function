@@ -1,7 +1,7 @@
 var ethers = require('ethers');
 var urlxDAIProvider = "https://dai.poa.network"
 var urlMainetProvider = "https://web3.dappnode.net"
-var TokenArtifact = require('NODE.json');
+var TokenArtifact = require('./NODE.json');
 var Token = "0xDa007777D86AC6d989cC9f79A73261b3fC5e0DA0";
 var Token_xDAI = "0xc60e38C6352875c051B481Cbe79Dd0383AdB7817";
 
@@ -22,26 +22,36 @@ var xdai_sc = [
 ]
 
 exports.handler = async () => {
-    var mainnetProvider = new ethers.providers.JsonRpcProvider(urlMainetProvider);
-    var xDAIProvider = new ethers.providers.JsonRpcProvider(urlxDAIProvider);
+    const mainnetProvider = new ethers.providers.JsonRpcProvider(urlMainetProvider);
+    const xDAIProvider = new ethers.providers.JsonRpcProvider(urlxDAIProvider);
 
     const token = new ethers.Contract(Token, TokenArtifact.abi, mainnetProvider)
     const token_xdai = new ethers.Contract(Token_xDAI, TokenArtifact.abi, xDAIProvider)
 
-    let totalSupply = await token.totalSupply();
+    const totalSupply = await token.totalSupply();
+    var circulating = totalSupply;
 
-    console.log("totalSupply", ethers.utils.formatEther(totalSupply))
-    let circulating = totalSupply;
+    const mainnet_sc_promises = mainnet_sc.map( item => {
+        return token.balanceOf(item);
+    })
 
-    for (var i = 0; i < mainnet_sc.length; i++) {
-        circulating = circulating.sub(await token.balanceOf(mainnet_sc[i]))
+    const xdai_sc_promises = xdai_sc.map( item => {
+        return token_xdai.balanceOf(item);
+    })
+
+    const mainnet_values = await Promise.all(mainnet_sc_promises);
+
+    for(var i = 0; i < mainnet_values.length; i++) {
+        circulating = circulating.sub(mainnet_values[i]);
     }
 
-    for (var i = 0; i < xdai_sc.length; i++) {
-        circulating = circulating.sub(await token_xdai.balanceOf(xdai_sc[i]))
+    const xdai_values = await Promise.all(xdai_sc_promises)
+
+    for(var i = 0; i < xdai_values.length; i++) {
+        circulating = circulating.sub(xdai_values[i]);
     }
 
-    let result = { totalSupply: totalSupply.toString(), circulating: circulating.toString() }
+    const result = { totalSupply: totalSupply.toString(), circulating: circulating.toString() }
 
     const response = {
         statusCode: 200,
