@@ -1,5 +1,10 @@
 # token-supply-function
 
+## Running the Lambda function locally
+```
+node-lambda run
+```
+
 ## Deploying to AWS
 Create `token-supply` AWS Lambda function, then:
 ```

@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "ethers": "^5.4.1"
+  },
+  "devDependencies": {
+    "node-lambda": "^1.0.0"
   }
 }
