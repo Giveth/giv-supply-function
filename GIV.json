@@ -1,7 +1,7 @@
 {
     "_format": "hh-sol-artifact-1",
-    "contractName": "NODE",
-    "sourceName": "contracts/Tokens/NODE.sol",
+    "contractName": "GIV",
+    "sourceName": "contracts/Tokens/GIV.sol",
     "abi": [
       {
         "inputs": [

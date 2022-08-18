@@ -1,7 +1,7 @@
 var ethers = require("ethers");
 var urlxDAIProvider = "https://rpc.gnosischain.com";
 var urlMainetProvider = "https://web3.dappnode.net";
-var TokenArtifact = require("./NODE.json");
+var TokenArtifact = require("../GIV.json");
 var Token = "0x900db999074d9277c5da2a43f252d74366230da0";
 var Token_xDAI = "0x4f4F9b8D5B4d0Dc10506e5551B0513B61fD59e75";
 
