@@ -1,6 +1,6 @@
 var ethers = require("ethers");
 var urlxDAIProvider = "https://rpc.gnosischain.com";
-var urlMainetProvider = "https://rpc.ankr.com/eth	";
+var urlMainetProvider = "https://rpc.ankr.com/eth";
 var urlOptimismProvider = "https://mainnet.optimism.io";
 var TokenArtifact = require("../GIV.json");
 var BridgedTokenArtifact = require("../GIV-Bridged-L2.json");

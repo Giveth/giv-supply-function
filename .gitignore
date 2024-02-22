@@ -46,3 +46,6 @@ jspm_packages/
 *.rar
 *.tar
 *.zip
+
+# System
+.DS_Store
