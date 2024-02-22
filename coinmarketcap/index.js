@@ -1,9 +1,13 @@
-var ethers = require('ethers');
-var urlxDAIProvider = "https://rpc.gnosischain.com"
-var urlMainetProvider = "https://web3.dappnode.net"
-var TokenArtifact = require('../GIV.json');
+var ethers = require("ethers");
+var urlxDAIProvider = "https://rpc.gnosischain.com";
+var urlMainetProvider = "https://rpc.ankr.com/eth	";
+var urlOptimismProvider = "https://mainnet.optimism.io";
+var TokenArtifact = require("../GIV.json");
+var BridgedTokenArtifact = require("../GIV-Bridged-L2.json");
+
 var Token = "0x900db999074d9277c5da2a43f252d74366230da0";
 var Token_xDAI = "0x4f4F9b8D5B4d0Dc10506e5551B0513B61fD59e75";
+var Token_optimism = '0x528CDc92eAB044E1E39FE43B9514bfdAB4412B98';
 
 
 var mainnet_sc = [
@@ -19,12 +23,26 @@ var xdai_sc = [
     "0xf924fF0f192f0c7c073161e0d62CE7635114e74f", // Liquidity Safe
 ]
 
+var optimism_sc = [
+    '0xE3Ac7b3e6B4065f4765d76fDC215606483BF3bD1', // Token Distro
+    '0xf924fF0f192f0c7c073161e0d62CE7635114e74f', // Liquidity Safe
+  ]
+  
+
 exports.handler = async event => {
     const mainnetProvider = new ethers.providers.JsonRpcProvider(urlMainetProvider);
     const xDAIProvider = new ethers.providers.JsonRpcProvider(urlxDAIProvider);
+    const optimismProvider = new ethers.providers.JsonRpcProvider(urlOptimismProvider);
+
 
     const token = new ethers.Contract(Token, TokenArtifact.abi, mainnetProvider)
     const token_xdai = new ethers.Contract(Token_xDAI, TokenArtifact.abi, xDAIProvider)
+    const token_optimism = new ethers.Contract(
+        Token_optimism,
+        BridgedTokenArtifact,
+        optimismProvider
+      );
+    
 
     const totalSupply = await token.totalSupply();
     var circulating = totalSupply;
@@ -36,6 +54,11 @@ exports.handler = async event => {
     const xdai_sc_promises = xdai_sc.map( item => {
         return token_xdai.balanceOf(item);
     })
+
+    const optimism_sc_promises = optimism_sc.map((item) => {
+        return token_optimism.balanceOf(item);
+      });
+    
 
     const mainnet_values = await Promise.all(mainnet_sc_promises);
 
@@ -49,8 +72,15 @@ exports.handler = async event => {
         circulating = circulating.sub(xdai_values[i]);
     }
 
+    const optimism_values = await Promise.all(optimism_sc_promises);
+
+  for (var i = 0; i < optimism_values.length; i++) {
+    circulating = circulating.sub(optimism_values[i]);
+  }
+
+
     if (event["queryStringParameters"] == undefined){
-            return "invalid input";
+            return "invalid input. undefined";
     }
     
     else if (event["queryStringParameters"]["q"] == "totalcoins"){
