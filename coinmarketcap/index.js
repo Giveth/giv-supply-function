@@ -2,8 +2,8 @@ var ethers = require("ethers");
 var urlxDAIProvider = "https://rpc.gnosischain.com";
 var urlMainetProvider = "https://rpc.ankr.com/eth";
 var urlOptimismProvider = "https://mainnet.optimism.io";
-var TokenArtifact = require("./GIV.json");
-var BridgedTokenArtifact = require("./GIV-Bridged-L2.json");
+var TokenArtifact = require("../GIV.json");
+var BridgedTokenArtifact = require("../GIV-Bridged-L2.json");
 
 var Token = "0x900db999074d9277c5da2a43f252d74366230da0";
 var Token_xDAI = "0x4f4F9b8D5B4d0Dc10506e5551B0513B61fD59e75";
@@ -21,7 +21,7 @@ var xdai_sc = [
     "0xe70494225312c6b1167c15134dab66730f36708d", // Giveth Treasury
     "0xf4ef9a155dd268e321afa7b9391e0602a7b09588", // GIVgarden Common Pool
     "0xf924fF0f192f0c7c073161e0d62CE7635114e74f", // Liquidity Safe
-    "0xd10BAC02a02747cB293972f99981F4Faf78E1626", //GIVgarden Multisig Wallet
+    "0xd10BAC02a02747cB293972f99981F4Faf78E1626", // GIVgarden Multisig Wallet
 ]
 
 var optimism_sc = [

@@ -30,7 +30,7 @@ node-lambda run
 Create `token-supply` AWS Lambda function, then:
 ```
 npm i
-zip -r function.zip NODE.json index.js node_modules
+npm run zip
 aws lambda update-function-code --function-name token-supply --zip-file fileb://function.zip
 ```
 
