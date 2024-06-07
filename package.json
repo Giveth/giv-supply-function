@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "zip": "zip -r function.zip NODE.json index.js node_modules GIV-Bridged-L2.json GIV.json"
+
   },
   "author": "",
   "license": "ISC",

@@ -21,6 +21,7 @@ var xdai_sc = [
   "0xf924fF0f192f0c7c073161e0d62CE7635114e74f", // Liquidity Safe
   "0xd10BAC02a02747cB293972f99981F4Faf78E1626", //GIVgarden Multisig Wallet
   "0x0018C6413BFE5430ff9ba4bD7ac3B6AA89BEBD9b", // nrGIV multisig
+
 ];
 
 var optimism_sc = [
