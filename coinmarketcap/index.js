@@ -21,12 +21,14 @@ var xdai_sc = [
     "0xe70494225312c6b1167c15134dab66730f36708d", // Giveth Treasury
     "0xf4ef9a155dd268e321afa7b9391e0602a7b09588", // GIVgarden Common Pool
     "0xf924fF0f192f0c7c073161e0d62CE7635114e74f", // Liquidity Safe
-    "0xd10BAC02a02747cB293972f99981F4Faf78E1626", // GIVgarden Multisig Wallet
+    "0xd10BAC02a02747cB293972f99981F4Faf78E1626", //GIVgarden Multisig Wallet
+    "0x0018C6413BFE5430ff9ba4bD7ac3B6AA89BEBD9b", // nrGIV multisig
 ]
 
 var optimism_sc = [
     '0xE3Ac7b3e6B4065f4765d76fDC215606483BF3bD1', // Token Distro
     '0xf924fF0f192f0c7c073161e0d62CE7635114e74f', // Liquidity Safe
+    "0x0018C6413BFE5430ff9ba4bD7ac3B6AA89BEBD9b", // nrGIV multisig
   ]
   
 
