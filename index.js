@@ -16,9 +16,8 @@ app.get('/giv-supply-cmc', async (req, res) => {
         if (result === "invalid input") {
             return res.status(400).json({ error: "Invalid input. Unsupported query parameter." });
         }
-        // Ensure the result is converted to a string without any extra spaces or lines
-        const cleanResult = result.toString().trim();
-        res.status(200).json({ [queryParam]: cleanResult });
+        // Send the result as a stringified JSON
+        res.status(200).json(result.toString().trim());
     } catch (error) {
         res.status(500).json({ error: 'Error loading data' });
     }
