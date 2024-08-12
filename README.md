@@ -1,37 +1,30 @@
-# GIV Circulating Supply Lambda Function
+# GIV Circulating Supply Endpoint
 
-This lambda function returns the current GIV token circulating and total supply. The lambda function has two variations to meet the [CoinGecko](https://www.coingecko.com/en/coins/giveth) and [CoinMarketCap](https://coinmarketcap.com/currencies/giveth/) circulating supply criteria.
+A nodejs endpoint that returns the current GIV token circulating and total supply. The lambda function has two variations to meet the [CoinGecko](https://www.coingecko.com/en/coins/giveth) and [CoinMarketCap](https://coinmarketcap.com/currencies/giveth/) circulating supply criteria.
 
-- [CoinGecko's GIV supply API.](https://circulating.giveth.io/token-supply)
-- [CoinMarketCap's GIV supply API.](https://supply.giveth.io/giv-supply-cmc?q=circulating)
+## Build the image
+```
+docker compose build --no-cache
+```
+## Running the image locally
+```
+docker compose up -d --build
+```
+## Check endpoints
+This will create the below endpoints as per the provider criteria
 
-
-## Installing the dependencies
+### Coingecko
+[CoinGecko's GIV supply API.](http://localhost:3000/giv-supply-cg)
 ```
-npm install
+curl "http://localhost:3000/giv-supply-cg"
 ```
-
-## Running the Lambda function locally
-To select the CoinGecko function:
-
+### Coinmarketcap
+[CoinMarketCap's GIV supply API.](http://localhost:3000/giv-supply-cmc?q=circulating_supply)
+Circulating:
 ```
-cd coingecko
+curl "http://localhost:3000/giv-supply-cmc?q=circulating_supply"
 ```
-Or to select the CoinMarketCap function:
+Total:
 ```
-cd coinmarketcap
+curl http://localhost:3000/giv-supply-cmc?q=total_supply
 ```
-Then running the lambda function locally:
-```
-node-lambda run
-```
-
-## Deploying to AWS
-Create `token-supply` AWS Lambda function, then:
-```
-npm i
-npm run zip
-aws lambda update-function-code --function-name token-supply --zip-file fileb://function.zip
-```
-
-After that, API Gateway needs to be set up manually.

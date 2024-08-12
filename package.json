@@ -6,14 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "zip": "zip -r function.zip NODE.json index.js node_modules GIV-Bridged-L2.json GIV.json"
-
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ethers": "^5.4.1"
-  },
-  "devDependencies": {
-    "node-lambda": "^1.0.0"
+    "ethers": "^5.4.1",
+    "express": "^4.19.2"
   }
 }
