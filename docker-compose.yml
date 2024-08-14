@@ -1,6 +1,7 @@
 services:
   giv-supply:
     build: .
+    restart: unless-stopped
     networks:
       - local
     ports:
