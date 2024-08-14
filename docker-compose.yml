@@ -1,6 +1,8 @@
 services:
   giv-supply:
     build: .
+    networks:
+      - local
     ports:
       - "3000"
 
