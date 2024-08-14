@@ -2,4 +2,30 @@ services:
   giv-supply:
     build: .
     ports:
-      - "3000:3000"
+      - "3000"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: unless-stopped
+    networks:
+      - local
+    ports:
+      - 80:80
+      - 443:443
+    env_file:
+      - .env
+    environment:
+      - MY_URL=${MY_URL:-}
+      - IP_WHITELIST=${IP_WHITELIST:-}
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+
+volumes:
+  caddy_config:
+  caddy_data:
+
+networks:
+  local:
