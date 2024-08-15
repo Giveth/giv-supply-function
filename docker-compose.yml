@@ -20,6 +20,7 @@ services:
       - .env
     environment:
       - MY_URL=${MY_URL:-}
+      - MY_URL2=${MY_URL2:-}
       - IP_WHITELIST=${IP_WHITELIST:-}
     volumes:
       - caddy_data:/data

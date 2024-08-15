@@ -8,3 +8,14 @@
         respond 403
     }
 }
+
+{$MY_URL2} {
+    route {
+        @allowed {
+            path /*
+            remote_ip {$IP_WHITELIST}
+        }
+        reverse_proxy @allowed giv-supply:3000
+        respond 403
+    }
+}

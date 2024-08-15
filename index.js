@@ -24,7 +24,7 @@ app.get('/giv-supply-cmc', async (req, res) => {
 });
 
 // Route to serve the JSON response with a 200 status code for CoinGecko
-app.get('/giv-supply-cg', async (req, res) => {
+app.get('/token-supply', async (req, res) => {
     try {
         const result = await calculateTokenSupplyCG();
         res.status(200).json(result);
