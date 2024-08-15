@@ -65,7 +65,7 @@ async function calculateTokenSupplyCMC(query) {
         circulating_supply = circulating_supply.sub(value);
     });
 
-    if (query === "total_supply") {
+    if (query === "totalcoins") {
         return totalSupply * Math.pow(10, -18);
     }
 
