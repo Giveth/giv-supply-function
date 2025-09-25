@@ -1,9 +1,9 @@
 const ethers = require("ethers");
 // Providers for different networks
 const urlxDAIProvider = "https://rpc.gnosischain.com";
-const urlMainetProvider = "https://rpc.ankr.com/eth";
+const urlMainetProvider = "https://ethereum.publicnode.com";
 const urlOptimismProvider = "https://mainnet.optimism.io";
-const urlPolygonzkEVMProvider = "https://rpc.ankr.com/polygon_zkevm";
+const urlPolygonzkEVMProvider = "https://rpc.polygon-zkevm.gateway.fm";
 // ABI files
 const TokenArtifact = require("./abi/GIV.json");
 const BridgedTokenArtifact = require("./abi/GIV-Bridged-L2.json");
@@ -39,7 +39,7 @@ const PolygonzkEVM_sc = [
     '0x4fB9B10ECDe1b048DBC79aBEAB3793edc93a0d54', // Token Distro
     '0xaF4D68B8084b01D2c8120120497511035A2ea3a1', // Giveth Multisig
     '0xa1769a425EA1197f32d8C3e0fbE3F92EaDACC21A', // Multisig liquidity
-  ];  
+];
 
 // Function to calculate token supply
 async function calculateTokenSupplyCMC(query) {
@@ -78,7 +78,7 @@ async function calculateTokenSupplyCMC(query) {
 
     const polygonzkEVM_values = await Promise.all(polygonzkEVM_sc_promises);
     polygonzkEVM_values.forEach(value => {
-      circulating_supply = circulating_supply.sub(value);
+        circulating_supply = circulating_supply.sub(value);
     });
 
     if (query === "totalcoins") {
